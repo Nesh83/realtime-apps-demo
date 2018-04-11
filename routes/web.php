@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    \App\Events\NewMessageEvent::dispatch(\App\Models\Message::create(['text' => 'event text', 'sender_id' =>1]));
+    //\App\Events\NewMessageEvent::dispatch(\App\Models\Message::create(['text' => 'event text', 'sender_id' =>1]));
     return view('welcome');
 });
 
