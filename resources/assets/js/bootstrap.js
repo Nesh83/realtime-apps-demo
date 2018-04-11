@@ -1,6 +1,5 @@
-
-window._ = require('lodash');
-window.Popper = require('popper.js').default;
+window._ = require('lodash')
+window.Popper = require('popper.js').default
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -9,9 +8,9 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+  window.$ = window.jQuery = require('jquery')
 
-    require('bootstrap');
+  require('bootstrap')
 } catch (e) {}
 
 /**
@@ -20,9 +19,11 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = require('axios')
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+
+axios.defaults.baseURL = process.env.MIX_APP_URL + '/api'
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -30,30 +31,42 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+let token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
+
+let apiToken = document.head.querySelector('[name=api-token]')
+if (apiToken) {
+  axios.defaults.headers.common['Authorization'] = apiToken.content
+}
+axios.defaults.headers.common['Content-Type'] = 'application/json'
+axios.defaults.headers.common['Accept'] = 'application/json'
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
- 
+
 import Echo from 'laravel-echo'
 
 // window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: 'http://' + window.location.hostname + ':6001'
-});
-
-window.Echo.channel('test')
-    .listen('TestEvent', e => {
-       console.log('Test primljen')
-    });
+  broadcaster: 'socket.io',
+  host: 'http://' + window.location.hostname + ':6001',
+  auth: {
+    headers: {
+      Authorization: apiToken ? apiToken.content : '',
+    },
+  },
+})
+//
+// window.Echo.channel('test')
+//   .listen('TestEvent', e => {
+//     console.log('Test primljen')
+//   })

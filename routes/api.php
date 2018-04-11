@@ -13,6 +13,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function (){
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/messages/public', 'MessageController@getPublicMessages');
+    Route::post('/messages/public', 'MessageController@storePublicMessage');
+
 });
+
+
+// routes for nativescript app
+Route::get('/jobs', 'JobPositionController@index');
+Route::get('/jobs/{id}', 'JobPositionController@show');
+
+Route::post('/surveys', 'SurveyController@store');
+Route::post('/surveys/stats', 'SurveyController@statistics');
+
