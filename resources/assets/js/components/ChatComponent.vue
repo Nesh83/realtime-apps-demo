@@ -2,20 +2,23 @@
     <div class="container">
 
         <div id="chat" class="row">
-            <div class="slider-wrapper col-md-3">
+            <div class="collapse-button" @click="expandChatUsers">
+                <span>Online users &nbsp</span><i style="right: 0" class="fa" :class="expandUsersList === true ? 'fa-caret-up' : 'fa-caret-down'"></i>
+            </div>
+            <div class="slider-wrapper col-md-3" :class="expandUsers === true ? 'expanded' : 'notEx'">
                 <div class="single-photo-holder" v-for="user in users">
                     {{user.name}}
                 </div>
             </div>
             <div class="comment-wrapper col-md-9">
+                <div class="write-comment">
+                    <input type="text" placeholder="Comment here" class="comment" v-on:keyup.enter="sendMessage" v-model="newMessage">
+                </div>
                 <div class="comments" id="comments-holder">
                     <div class="comment-holder" v-for="message in messages">
                         <div class="name">{{message.sender.name}}:</div>
                         <div class="single-comment">{{message.text}}</div>
                     </div>
-                </div>
-                <div class="write-comment">
-                    <input type="text" placeholder="Comment here" class="comment" v-on:keyup.enter="sendMessage" v-model="newMessage">
                 </div>
             </div>
         </div>
@@ -26,6 +29,8 @@
     export default {
         data() {
             return {
+                expandUsers: false,
+                expandUsersList: false,
                 messages: [],
                 users: [],
                 newMessage: ''
@@ -72,6 +77,10 @@
             scrollTop(){
                 var objDiv = document.getElementById("comments-holder");
                 objDiv.scrollTop = 0;
+            },
+            expandChatUsers(){
+                this.expandUsers = !this.expandUsers;
+                this.expandUsersList = !this.expandUsersList
             }
         }
     }
@@ -109,6 +118,7 @@
     .comments {
         height: calc(100% - 70px);
         overflow-y: auto;
+        word-wrap: break-word;
         @media screen and (max-width: 992px) {
             height: auto;
         }
@@ -148,6 +158,32 @@
     }
 
     .write-comment {
-        margin: 15px 0;
+        margin-bottom: 15px;
+    }
+    @media screen and (max-width: 992px) {
+        .container{
+            padding: 0;
+        }
+    }
+    .collapse-button{
+        position: relative;
+        font-size: 25px;
+        color: #fff;
+        padding: 5px;
+        background-color: #5c9b30;
+        @media screen and ( min-width: 992px){
+            display: none;
+        }
+        @media screen and ( max-width: 992px){
+            display: block;
+        }
+    }
+    @media screen and ( max-width: 992px){
+        .expanded{
+            display: block;
+        }
+        .notEx{
+            display: none;
+        }
     }
 </style>

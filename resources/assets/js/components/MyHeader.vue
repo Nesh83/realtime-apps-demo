@@ -4,7 +4,7 @@
         <img src="../../images/logoQ.png" class="img-responsive"/>
         </a>
         <div>
-            <a class="btn header-btn" :href=homeUrl>Presentation</a>
+            <a class="btn header-btn" :href=homeUrl>Slides</a>
             <a class="btn header-btn" :href=chatUrl>Chat</a>
         </div>
     </div>

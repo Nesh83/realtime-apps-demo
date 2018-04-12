@@ -129,13 +129,14 @@
     .slider-wrapper {
         height: 100%;
         background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);
+        text-align: center;
     }
 
     .single-photo-holder {
         position: relative;
         height: 100%;
         img {
-            width: 100%;
+            width: 95%;
             display: inline-block;
             height: 100%;
             padding-top: 10vh;
@@ -165,6 +166,7 @@
     .comments {
         height: 100%;
         overflow-y: auto;
+        word-wrap: break-word;
         @media screen and (max-width: 992px) {
             height: auto;
         }
@@ -184,5 +186,10 @@
         text-align: left;
         color: #5c9b30;
         font-size: 20px;
+    }
+    .comment-wrapper{
+        @media screen and (max-width: 992px){
+            display: none;
+        }
     }
 </style>

@@ -48644,10 +48644,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            expandUsers: false,
+            expandUsersList: false,
             messages: [],
             users: [],
             newMessage: ''
@@ -48698,6 +48703,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         scrollTop: function scrollTop() {
             var objDiv = document.getElementById("comments-holder");
             objDiv.scrollTop = 0;
+        },
+        expandChatUsers: function expandChatUsers() {
+            this.expandUsers = !this.expandUsers;
+            this.expandUsersList = !this.expandUsersList;
         }
     }
 });
@@ -48862,7 +48871,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", [
       _c("a", { staticClass: "btn header-btn", attrs: { href: _vm.homeUrl } }, [
-        _vm._v("Presentation")
+        _vm._v("Slides")
       ]),
       _vm._v(" "),
       _c("a", { staticClass: "btn header-btn", attrs: { href: _vm.chatUrl } }, [
@@ -48967,7 +48976,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n#meetup[data-v-28c93dce] {\n  margin: 0;\n  height: calc(100vh - 88px);\n}\n@media screen and (max-width: 992px) {\n#meetup[data-v-28c93dce] {\n      height: auto;\n}\n}\n.comment-wrapper[data-v-28c93dce] {\n  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e1e1e1));\n  background: linear-gradient(180deg, #ffffff 0%, #e1e1e1 100%);\n  height: 100%;\n}\n.slider-wrapper[data-v-28c93dce] {\n  height: 100%;\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#5c9b30));\n  background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);\n}\n.single-photo-holder[data-v-28c93dce] {\n  position: relative;\n  height: 100%;\n}\n.single-photo-holder img[data-v-28c93dce] {\n    width: 100%;\n    display: inline-block;\n    height: 100%;\n    padding-top: 10vh;\n    padding-bottom: 10vh;\n}\n.single-photo-holder .fa-angle-left[data-v-28c93dce] {\n    position: absolute;\n    left: 7px;\n    top: 46%;\n    font-size: 64px;\n    color: rgba(196, 196, 196, 0.8);\n    cursor: pointer;\n}\n.single-photo-holder .fa-angle-right[data-v-28c93dce] {\n    position: absolute;\n    right: 7px;\n    top: 46%;\n    font-size: 64px;\n    color: rgba(196, 196, 196, 0.8);\n    cursor: pointer;\n}\n@media screen and (max-width: 992px) {\n.single-photo-holder[data-v-28c93dce] {\n      margin: 0;\n}\n}\n.comments[data-v-28c93dce] {\n  height: 100%;\n  overflow-y: auto;\n}\n@media screen and (max-width: 992px) {\n.comments[data-v-28c93dce] {\n      height: auto;\n}\n}\n.comment-holder[data-v-28c93dce] {\n  margin: 15px 0;\n}\n.single-comment[data-v-28c93dce] {\n  color: #000000;\n  font-size: 18px;\n  text-align: left;\n}\n.name[data-v-28c93dce] {\n  text-align: left;\n  color: #5c9b30;\n  font-size: 20px;\n}\n", ""]);
+exports.push([module.i, "\n#meetup[data-v-28c93dce] {\n  margin: 0;\n  height: calc(100vh - 88px);\n}\n@media screen and (max-width: 992px) {\n#meetup[data-v-28c93dce] {\n      height: auto;\n}\n}\n.comment-wrapper[data-v-28c93dce] {\n  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e1e1e1));\n  background: linear-gradient(180deg, #ffffff 0%, #e1e1e1 100%);\n  height: 100%;\n}\n.slider-wrapper[data-v-28c93dce] {\n  height: 100%;\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#5c9b30));\n  background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);\n  text-align: center;\n}\n.single-photo-holder[data-v-28c93dce] {\n  position: relative;\n  height: 100%;\n}\n.single-photo-holder img[data-v-28c93dce] {\n    width: 95%;\n    display: inline-block;\n    height: 100%;\n    padding-top: 10vh;\n    padding-bottom: 10vh;\n}\n.single-photo-holder .fa-angle-left[data-v-28c93dce] {\n    position: absolute;\n    left: 7px;\n    top: 46%;\n    font-size: 64px;\n    color: rgba(196, 196, 196, 0.8);\n    cursor: pointer;\n}\n.single-photo-holder .fa-angle-right[data-v-28c93dce] {\n    position: absolute;\n    right: 7px;\n    top: 46%;\n    font-size: 64px;\n    color: rgba(196, 196, 196, 0.8);\n    cursor: pointer;\n}\n@media screen and (max-width: 992px) {\n.single-photo-holder[data-v-28c93dce] {\n      margin: 0;\n}\n}\n.comments[data-v-28c93dce] {\n  height: 100%;\n  overflow-y: auto;\n  word-wrap: break-word;\n}\n@media screen and (max-width: 992px) {\n.comments[data-v-28c93dce] {\n      height: auto;\n}\n}\n.comment-holder[data-v-28c93dce] {\n  margin: 15px 0;\n}\n.single-comment[data-v-28c93dce] {\n  color: #000000;\n  font-size: 18px;\n  text-align: left;\n}\n.name[data-v-28c93dce] {\n  text-align: left;\n  color: #5c9b30;\n  font-size: 20px;\n}\n@media screen and (max-width: 992px) {\n.comment-wrapper[data-v-28c93dce] {\n    display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -49238,7 +49247,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n#chat[data-v-ed7b4d44] {\n  margin: 0;\n  height: calc(100vh - 88px);\n}\n@media screen and (max-width: 992px) {\n#chat[data-v-ed7b4d44] {\n      height: auto;\n}\n}\n.comment-wrapper[data-v-ed7b4d44] {\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#191919));\n  background: linear-gradient(180deg, #2d2d2d 0%, #191919 100%);\n  height: 100%;\n}\n.slider-wrapper[data-v-ed7b4d44] {\n  height: 100%;\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#5c9b30));\n  background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);\n  padding-top: 20px;\n}\n.single-photo-holder[data-v-ed7b4d44] {\n  position: relative;\n  font-size: 25px;\n  color: #fff;\n  padding: 5px;\n}\n@media screen and (max-width: 992px) {\n.single-photo-holder[data-v-ed7b4d44] {\n      margin: 0;\n}\n}\n.comments[data-v-ed7b4d44] {\n  height: calc(100% - 70px);\n  overflow-y: auto;\n}\n@media screen and (max-width: 992px) {\n.comments[data-v-ed7b4d44] {\n      height: auto;\n}\n}\n.comment-holder[data-v-ed7b4d44] {\n  margin: 15px 0;\n}\n.single-comment[data-v-ed7b4d44] {\n  color: #fff;\n  font-size: 18px;\n  text-align: left;\n}\n.name[data-v-ed7b4d44] {\n  text-align: left;\n  color: #5c9b30;\n  font-size: 20px;\n}\n.comment[data-v-ed7b4d44] {\n  width: 100%;\n  padding: 5px;\n  border: none;\n  border-bottom: 1px solid #fff;\n  background-color: transparent;\n  font-size: 20px;\n  color: #fff;\n}\n.comment[data-v-ed7b4d44]::-webkit-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]:-ms-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]::-ms-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]::placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]:focus {\n    border: 1px solid #5c9b30;\n    outline: none;\n}\n.write-comment[data-v-ed7b4d44] {\n  margin: 15px 0;\n}\n", ""]);
+exports.push([module.i, "\n#chat[data-v-ed7b4d44] {\n  margin: 0;\n  height: calc(100vh - 88px);\n}\n@media screen and (max-width: 992px) {\n#chat[data-v-ed7b4d44] {\n      height: auto;\n}\n}\n.comment-wrapper[data-v-ed7b4d44] {\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#191919));\n  background: linear-gradient(180deg, #2d2d2d 0%, #191919 100%);\n  height: 100%;\n}\n.slider-wrapper[data-v-ed7b4d44] {\n  height: 100%;\n  background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#5c9b30));\n  background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);\n  padding-top: 20px;\n}\n.single-photo-holder[data-v-ed7b4d44] {\n  position: relative;\n  font-size: 25px;\n  color: #fff;\n  padding: 5px;\n}\n@media screen and (max-width: 992px) {\n.single-photo-holder[data-v-ed7b4d44] {\n      margin: 0;\n}\n}\n.comments[data-v-ed7b4d44] {\n  height: calc(100% - 70px);\n  overflow-y: auto;\n  word-wrap: break-word;\n}\n@media screen and (max-width: 992px) {\n.comments[data-v-ed7b4d44] {\n      height: auto;\n}\n}\n.comment-holder[data-v-ed7b4d44] {\n  margin: 15px 0;\n}\n.single-comment[data-v-ed7b4d44] {\n  color: #fff;\n  font-size: 18px;\n  text-align: left;\n}\n.name[data-v-ed7b4d44] {\n  text-align: left;\n  color: #5c9b30;\n  font-size: 20px;\n}\n.comment[data-v-ed7b4d44] {\n  width: 100%;\n  padding: 5px;\n  border: none;\n  border-bottom: 1px solid #fff;\n  background-color: transparent;\n  font-size: 20px;\n  color: #fff;\n}\n.comment[data-v-ed7b4d44]::-webkit-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]:-ms-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]::-ms-input-placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]::placeholder {\n    color: #fff;\n}\n.comment[data-v-ed7b4d44]:focus {\n    border: 1px solid #5c9b30;\n    outline: none;\n}\n.write-comment[data-v-ed7b4d44] {\n  margin-bottom: 15px;\n}\n@media screen and (max-width: 992px) {\n.container[data-v-ed7b4d44] {\n    padding: 0;\n}\n}\n.collapse-button[data-v-ed7b4d44] {\n  position: relative;\n  font-size: 25px;\n  color: #fff;\n  padding: 5px;\n  background-color: #5c9b30;\n}\n@media screen and (min-width: 992px) {\n.collapse-button[data-v-ed7b4d44] {\n      display: none;\n}\n}\n@media screen and (max-width: 992px) {\n.collapse-button[data-v-ed7b4d44] {\n      display: block;\n}\n}\n@media screen and (max-width: 992px) {\n.expanded[data-v-ed7b4d44] {\n    display: block;\n}\n.notEx[data-v-ed7b4d44] {\n    display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -49255,7 +49264,24 @@ var render = function() {
     _c("div", { staticClass: "row", attrs: { id: "chat" } }, [
       _c(
         "div",
-        { staticClass: "slider-wrapper col-md-3" },
+        { staticClass: "collapse-button", on: { click: _vm.expandChatUsers } },
+        [
+          _c("span", [_vm._v("Online users  ")]),
+          _c("i", {
+            staticClass: "fa",
+            class:
+              _vm.expandUsersList === true ? "fa-caret-up" : "fa-caret-down",
+            staticStyle: { right: "0" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "slider-wrapper col-md-3",
+          class: _vm.expandUsers === true ? "expanded" : "notEx"
+        },
         _vm._l(_vm.users, function(user) {
           return _c("div", { staticClass: "single-photo-holder" }, [
             _vm._v("\n                " + _vm._s(user.name) + "\n            ")
@@ -49264,22 +49290,6 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "comment-wrapper col-md-9" }, [
-        _c(
-          "div",
-          { staticClass: "comments", attrs: { id: "comments-holder" } },
-          _vm._l(_vm.messages, function(message) {
-            return _c("div", { staticClass: "comment-holder" }, [
-              _c("div", { staticClass: "name" }, [
-                _vm._v(_vm._s(message.sender.name) + ":")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "single-comment" }, [
-                _vm._v(_vm._s(message.text))
-              ])
-            ])
-          })
-        ),
-        _vm._v(" "),
         _c("div", { staticClass: "write-comment" }, [
           _c("input", {
             directives: [
@@ -49311,7 +49321,23 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "comments", attrs: { id: "comments-holder" } },
+          _vm._l(_vm.messages, function(message) {
+            return _c("div", { staticClass: "comment-holder" }, [
+              _c("div", { staticClass: "name" }, [
+                _vm._v(_vm._s(message.sender.name) + ":")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "single-comment" }, [
+                _vm._v(_vm._s(message.text))
+              ])
+            ])
+          })
+        )
       ])
     ])
   ])
