@@ -11,7 +11,11 @@ class MessageController extends Controller
 {
     public function getPublicMessages()
     {
-        $messages = Message::with('sender')->limit(30)->orderByDesc('created_at')->get();
+        $total = Message::count();
+
+        $skip = $total > 30 ? $total - 30 : 0;
+
+        $messages = Message::with('sender')->skip($skip)->limit(30)->orderBy('created_at')->get();
 
         return $messages;
     }
@@ -29,11 +33,17 @@ class MessageController extends Controller
             'sender_id' => $user->id,
         ]);
 
+        $message->load('sender');
 
-        NewMessageEvent::dispatch($message);
+        broadcast(new NewMessageEvent($message))->toOthers();
 
         return $message;
 
+    }
+
+    public function startPrivateChat(Request $request, $id)
+    {
+        return true;
     }
     
 }

@@ -26,12 +26,14 @@
                 </div>
 
                 <div class="send-wrap ">
-
-                    <textarea class="form-control send-message" rows="3" placeholder="Write a reply..."></textarea>
+                    <textarea class="form-control send-message" rows="3" placeholder="Write a reply..."
+                              v-model="newMessage"></textarea>
                 </div>
                 <div class="btn-panel">
-                    <a href="" class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"><i
-                            class="fa fa-plus"></i> Send Message</a>
+                    <button type="button" v-on:click="sendMessage"
+                            class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"><i
+                            class="fa fa-plus"></i> Send Message
+                    </button>
                 </div>
             </div>
         </div>
@@ -39,39 +41,50 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        messages: [],
-        users: []
-      }
-    },
-    mounted () {
+    export default {
+        data() {
+            return {
+                messages: [],
+                users: [],
+                newMessage: ''
+            }
+        },
+        mounted() {
 
-      this.$http.get('/messages/public').then((response) => {
-        this.messages = response.data
-      }, (response) => {
-        console.log(response)
-      })
+            this.$http.get('/messages/public').then((response) => {
+                this.messages = response.data
+            }, (response) => {
+                console.log(response)
+            })
 
 
-    },
-    created (){
-      let chanel = Echo.join('chat')
+        },
+        created() {
+            let chanel = Echo.join('chat')
 
-      chanel.here((users) => {
-          console.log('got users', users)
-          this.users = users
-        })
-        .joining((user) => {
-          console.log(user.name)
-        })
-        .leaving((user) => {
-          console.log(user.name)
-        })
-        .listen('NewMessageEvent', e => {
-        console.log(e)
-      })
+            chanel.here((users) => {
+                users.forEach(el => {
+                    this.users.push(el)
+                })
+            }).joining((user) => {
+                if (this.users.indexOf(user) == -1) {
+                    this.users.push(user)
+                }
+            }).leaving((user) => {
+                this.users.splice(this.users.indexOf(user), 1)
+            }).listen('NewMessageEvent', (event) => {
+                this.messages.push(event.message)
+            })
+        },
+        methods: {
+            sendMessage() {
+                this.$http.post('/messages/public', {'text': this.newMessage}).then((response) => {
+                    this.messages.push(response.data)
+                    this.newMessage = '';
+                }, (response) => {
+                    console.log(response)
+                })
+            }
+        }
     }
-  }
 </script>
