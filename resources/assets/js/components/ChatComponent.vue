@@ -171,6 +171,7 @@
         color: #fff;
         padding: 5px;
         background-color: #5c9b30;
+        cursor: pointer;
         @media screen and ( min-width: 992px){
             display: none;
         }

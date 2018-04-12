@@ -46,6 +46,7 @@ export default {
             text-transform: uppercase;
             font-size: 18px;
             padding: 10px 25px;
+            margin-bottom: 5px;
             &:focus {
                 border: none;
                 outline: none;
