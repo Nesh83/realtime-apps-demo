@@ -44,7 +44,7 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:surveys,email',
+            'email' => 'email|unique:surveys,email',
             'position' => 'required',
             'experience' => 'required',
             'years' => 'required',
