@@ -1,7 +1,9 @@
 @extends('layouts.app')
-
+@section('styles')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-<div class="container">
+<div class="container" style="font-size: 12pt;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

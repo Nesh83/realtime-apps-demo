@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessageEvent;
+use App\Events\NewPublicMessageEvent;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,11 +12,7 @@ class MessageController extends Controller
 {
     public function getPublicMessages()
     {
-        $total = Message::count();
-
-        $skip = $total > 30 ? $total - 30 : 0;
-
-        $messages = Message::with('sender')->skip($skip)->limit(30)->orderBy('created_at')->get();
+        $messages = Message::with('sender')->limit(30)->orderByDesc('created_at')->get();
 
         return $messages;
     }
@@ -36,6 +33,7 @@ class MessageController extends Controller
         $message->load('sender');
 
         broadcast(new NewMessageEvent($message))->toOthers();
+        broadcast(new NewPublicMessageEvent($message));
 
         return $message;
 

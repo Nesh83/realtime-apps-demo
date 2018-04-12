@@ -1,39 +1,21 @@
 <template>
     <div class="container">
-        <div class="row">
 
-            <div class="conversation-wrap col-lg-3">
-                <div><h4>Active users:</h4></div>
-
-                <div class="media conversation" v-for="user in users">
-                    <div class="media-body">
-                        <h5 class="media-heading">{{user.name}}</h5>
-                    </div>
+        <div id="chat" class="row">
+            <div class="slider-wrapper col-md-3">
+                <div class="single-photo-holder" v-for="user in users">
+                    {{user.name}}
                 </div>
             </div>
-
-
-            <div class="message-wrap col-lg-8">
-
-                <div class="msg-wrap" v-for="message in messages">
-                    <div class="media msg ">
-                        <div class="media-body">
-                            <h5 class="media-heading">{{message.sender.name}}</h5>
-                            <p class="col-lg-10">{{message.text}}</p>
-                            <small class="pull-right time"><i class="fa fa-clock-o"></i> {{message.created_at}}</small>
-                        </div>
+            <div class="comment-wrapper col-md-9">
+                <div class="comments" id="comments-holder">
+                    <div class="comment-holder" v-for="message in messages">
+                        <div class="name">{{message.sender.name}}:</div>
+                        <div class="single-comment">{{message.text}}</div>
                     </div>
                 </div>
-
-                <div class="send-wrap ">
-                    <textarea class="form-control send-message" rows="3" placeholder="Write a reply..."
-                              v-model="newMessage"></textarea>
-                </div>
-                <div class="btn-panel">
-                    <button type="button" v-on:click="sendMessage"
-                            class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"><i
-                            class="fa fa-plus"></i> Send Message
-                    </button>
+                <div class="write-comment">
+                    <input type="text" placeholder="Comment here" class="comment" v-on:keyup.enter="sendMessage" v-model="newMessage">
                 </div>
             </div>
         </div>
@@ -73,18 +55,99 @@
             }).leaving((user) => {
                 this.users.splice(this.users.indexOf(user), 1)
             }).listen('NewMessageEvent', (event) => {
-                this.messages.push(event.message)
+                this.messages.unshift(event.message)
+                this.scrollTop()
             })
         },
         methods: {
             sendMessage() {
                 this.$http.post('/messages/public', {'text': this.newMessage}).then((response) => {
-                    this.messages.push(response.data)
+                    this.messages.unshift(response.data)
                     this.newMessage = '';
+                    this.scrollTop()
                 }, (response) => {
                     console.log(response)
                 })
+            },
+            scrollTop(){
+                var objDiv = document.getElementById("comments-holder");
+                objDiv.scrollTop = 0;
             }
         }
     }
 </script>
+<style lang="scss" scoped>
+    #chat {
+        margin: 0;
+        height: calc(100vh - 88px);
+        @media screen and (max-width: 992px) {
+            height: auto;
+        }
+    }
+
+    .comment-wrapper {
+        background: linear-gradient(180deg, #2d2d2d 0%, #191919 100%);
+        height: 100%;
+    }
+
+    .slider-wrapper {
+        height: 100%;
+        background: linear-gradient(180deg, #2d2d2d 0%, #5c9b30 100%);
+        padding-top: 20px;
+    }
+
+    .single-photo-holder {
+        position: relative;
+        font-size: 25px;
+        color: #fff;
+        padding: 5px;
+        @media screen and (max-width: 992px) {
+            margin: 0;
+        }
+    }
+
+    .comments {
+        height: calc(100% - 70px);
+        overflow-y: auto;
+        @media screen and (max-width: 992px) {
+            height: auto;
+        }
+    }
+
+    .comment-holder {
+        margin: 15px 0;
+    }
+
+    .single-comment {
+        color: #fff;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .name {
+        text-align: left;
+        color: #5c9b30;
+        font-size: 20px;
+    }
+
+    .comment {
+        width: 100%;
+        padding: 5px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        background-color: transparent;
+        font-size: 20px;
+        color: #fff;
+        &::placeholder {
+            color: #fff;
+        }
+        &:focus {
+            border: 1px solid #5c9b30;
+            outline: none;
+        }
+    }
+
+    .write-comment {
+        margin: 15px 0;
+    }
+</style>

@@ -13,13 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/messages/public', 'MessageController@getPublicMessages');
+
 Route::middleware('auth:api')->group(function (){
 
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
-    Route::get('/messages/public', 'MessageController@getPublicMessages');
+
     Route::post('/messages/public', 'MessageController@storePublicMessage');
 
 });

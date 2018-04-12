@@ -1,0 +1,8 @@
+{
+    "slides": ["../../images/1.png", "../../images/2.png", "../../images/3.png"],
+    "chat": [
+        {"name": "Jera", "message": "rheg hegeig oighh gii gfghehrf egheirhgihe gieh"},
+        {"name": "Giga", "message": "dhfjewg hjrgh ehfgihoigh ooigih ogiheroghh oerhgoih"},
+        {"name": "Miki", "message": "iohg ertgherog oerhgoih eoihrgihoihgeihrgoihe"}
+    ]
+}

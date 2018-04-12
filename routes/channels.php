@@ -18,3 +18,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('chat', function ($user) {
     return ['id' => $user->id, 'name' => $user->name];
 });
+
+Broadcast::channel('public-chat', function ($user) {
+    return true;
+});

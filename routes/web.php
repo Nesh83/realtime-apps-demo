@@ -13,11 +13,11 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('slider');
 });
 
 Route::get('/chat', function (){
     return view('chat');
-})->name('home');
+})->middleware('auth')->name('presentation');
 
-Route::get('/users/{id}/chat', 'MessagesController@chatWith');
+Route::get('/users/{id}/chat', 'MessageController@chatWith');

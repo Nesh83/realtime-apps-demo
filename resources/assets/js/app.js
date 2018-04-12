@@ -21,7 +21,8 @@ Vue.use(VueAxios, axios);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('chat-component', require('./components/ChatComponent.vue'));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('myHeader', require('./components/MyHeader.vue'));
+Vue.component('meetup', require('./components/Meetup.vue'));
 
 const app = new Vue({
     el: '#app'
